@@ -22,7 +22,10 @@ public class eye : MonoBehaviour
     }
 
     void UpdatePosition() {
-        if (transform.position.y > start.y + 3 || transform.position.y < start.y - 3) {
+        if (transform.position.y > start.y + 3 && speed>0) {
+            speed *= -1;
+        }
+        if (transform.position.y < start.y - 3 && speed<0) {
             speed *= -1;
         }
         Vector2 input = new Vector2(0, 1);

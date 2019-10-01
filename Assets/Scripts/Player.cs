@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Player : MonoBehaviour
 {
@@ -8,10 +9,13 @@ public class Player : MonoBehaviour
 
     Vector2 velocity;
 
+    public AudioClip[] choques;
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,5 +35,10 @@ public class Player : MonoBehaviour
     Vector2 GetInput() {
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         return input;
+    }
+
+    void OnCollisionEnter2D() {
+        audioSource.clip = choques[Random.Range(0, choques.Length)];
+        audioSource.Play(0);
     }
 }
