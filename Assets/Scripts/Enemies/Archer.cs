@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Archer : MonoBehaviour
 {
-    Vector2 start;
+    [Header("Arrow Spawn Settings:")]
     public GameObject arrowPrefab;
-    float rate;
+    public float rate = 2;
+    public float range = 2;
+
+    Vector2 start;
 
     GameObject newArrow;
     float nextSpawn;
@@ -15,7 +18,6 @@ public class Archer : MonoBehaviour
     void Start()
     {
         start = transform.position;
-        rate = 10/eye.speed;
         nextSpawn = 0;
     }
 
@@ -31,7 +33,7 @@ public class Archer : MonoBehaviour
         
         nextSpawn += rate;
 
-        Vector2 randomSpawnPosition = new Vector2(Random.Range(start.x - 3, start.x + 3), Random.Range(start.y - 3, start.y + 3));
+        Vector2 randomSpawnPosition = new Vector2(Random.Range(start.x - range, start.x + range), Random.Range(start.y - range, start.y + range));
         Vector2 randomSpawnRotation = Vector2.up;
 
         newArrow = Instantiate(arrowPrefab, randomSpawnPosition, Quaternion.Euler(randomSpawnRotation));

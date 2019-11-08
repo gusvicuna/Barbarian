@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAudioController : MonoBehaviour
 {
+    [Header("Hitting Walls:")]
     public AudioClip[] choques;
 
     AudioSource audioSource;
@@ -15,8 +16,8 @@ public class PlayerAudioController : MonoBehaviour
         PlayerPhysicsController.OnHitEvent += PlayerCrash;
     }
 
-    void OnDisable() {
-        PlayerPhysicsController.OnHitEvent += PlayerCrash;
+    void OnDestroy() {
+        PlayerPhysicsController.OnHitEvent -= PlayerCrash;
     }
 
     void PlayerCrash(){

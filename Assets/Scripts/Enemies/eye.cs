@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class eye : MonoBehaviour
+public class Eye : MonoBehaviour
 {
-    static public float speed = 5;
+    [Header("Main Settings:")]
+    public float speed = 5;
+    public float range = 3;
 
     Vector2 velocity;
     Vector2 start;
@@ -22,10 +24,10 @@ public class eye : MonoBehaviour
     }
 
     void UpdatePosition() {
-        if (transform.position.y > start.y + 3 && speed>0) {
+        if (transform.position.y > start.y + range && speed>0) {
             speed *= -1;
         }
-        if (transform.position.y < start.y - 3 && speed<0) {
+        if (transform.position.y < start.y - range && speed<0) {
             speed *= -1;
         }
         Vector2 input = new Vector2(0, 1);
