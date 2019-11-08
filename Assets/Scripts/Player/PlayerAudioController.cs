@@ -12,11 +12,11 @@ public class PlayerAudioController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        PlayerPhysicsController.CollisionEnterEvent += PlayerCrash;
+        PlayerPhysicsController.OnHitEvent += PlayerCrash;
     }
 
     void OnDisable() {
-        PlayerPhysicsController.CollisionEnterEvent += PlayerCrash;
+        PlayerPhysicsController.OnHitEvent += PlayerCrash;
     }
 
     void PlayerCrash(){
